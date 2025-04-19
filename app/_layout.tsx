@@ -14,6 +14,7 @@ import {
 import { useOnlineManager } from "@/hooks/useOnlineManager";
 import { useAppState } from "@/hooks/useAppState";
 import tamaguiConfig from "@/tamagui.config";
+import { GlobalContextProvider } from "@/context/global";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,10 +48,24 @@ export default function RootLayout() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<TamaguiProvider config={tamaguiConfig} defaultTheme="light">
-				<StatusBar style="auto" />
-				<Stack />
-			</TamaguiProvider>
+			<GlobalContextProvider>
+				<TamaguiProvider config={tamaguiConfig} defaultTheme="light">
+					<StatusBar style="auto" />
+					<Stack>
+						<Stack.Screen name="index" options={{ headerShown: false }} />
+						<Stack.Screen name="auth/signin" options={{ headerShown: false }} />
+						<Stack.Screen
+							name="auth/register"
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name="create-reports"
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen name="all-reports" options={{ headerShown: false }} />
+					</Stack>
+				</TamaguiProvider>
+			</GlobalContextProvider>
 		</QueryClientProvider>
 	);
 }
