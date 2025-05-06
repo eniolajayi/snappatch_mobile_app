@@ -11,18 +11,14 @@ export function CustomScreenHeader({
 	onBackPress,
 }: CustomScreenHeaderProps) {
 	return (
-		<View paddingBlockStart="$4" backgroundColor={"$color1"}>
-			<XStack gap="$4" alignContent="center">
-				{/* Add back button */}
-				<Button size="$3" chromeless onPress={onBackPress}>
+		<View paddingBlock="$2">
+			<XStack gap="$4" paddingBlock="$2" alignItems="center">
+				<Button chromeless onPress={onBackPress}>
 					Back
 				</Button>
-				<Text fontSize={"$8"} marginBlockEnd="$6" fontWeight={"$extraBold"}>
+				<Text fontSize={"$8"} fontWeight={"$extraBold"}>
 					{screenTitle}
 				</Text>
-				{/* <Button size="$3" chromeless>
-					Go Back
-				</Button> */}
 			</XStack>
 		</View>
 	);

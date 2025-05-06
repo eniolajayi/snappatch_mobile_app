@@ -17,6 +17,7 @@ import { type FormikProps, useFormik } from "formik";
 import { useState } from "react";
 import { saveToSecureStore, StorageKeys } from "@/utils/storage";
 import { useGlobalContextProvider } from "@/context/global";
+import { handleMutationError } from "@/utils/form";
 
 export default function SignInScreen() {
 	const [hidePassword, setHidePassword] = useState(true);
@@ -55,16 +56,14 @@ export default function SignInScreen() {
 				const token = res.data.token;
 				saveToSecureStore(StorageKeys.AUTH_TOKEN, token)
 					.then(() => {
-						setIsAuthenticated(!isAuthenticated);
+						setIsAuthenticated(true);
 						console.log("routing to home page");
 						router.navigate("/");
 					})
 					.catch(console.error);
 			}
 		},
-		onError: (error) => {
-			console.error("Error logging in:", error);
-		},
+		onError: handleMutationError,
 	});
 
 	return (

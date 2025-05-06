@@ -1,3 +1,4 @@
+import { getFromSecureStore, StorageKeys } from "@/utils/storage";
 import {
 	type Dispatch,
 	type SetStateAction,
@@ -5,6 +6,7 @@ import {
 	type ReactNode,
 	useState,
 	useContext,
+	useEffect,
 } from "react";
 
 // user.isAuthenticated? expand?
@@ -18,6 +20,16 @@ const GlobalContext = createContext<GlobalContext | undefined>(undefined);
 
 export function GlobalContextProvider({ children }: { children: ReactNode }) {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	useEffect(() => {
+		getFromSecureStore(StorageKeys.AUTH_TOKEN).then((token) => {
+			if (token) {
+				setIsAuthenticated(true);
+			} else {
+				setIsAuthenticated(false);
+			}
+		});
+	}, []);
+
 	return (
 		<GlobalContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
 			{children}
