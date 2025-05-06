@@ -63,6 +63,12 @@ export default function RootLayout() {
 							options={{ headerShown: false }}
 						/>
 						<Stack.Screen name="all-reports" options={{ headerShown: false }} />
+						<Stack.Screen name="view-report" options={{ headerShown: false }} />
+						<Stack.Screen name="categories" options={{ headerShown: false }} />
+						<Stack.Screen
+							name="add-location"
+							options={{ headerShown: false }}
+						/>
 					</Stack>
 				</TamaguiProvider>
 			</GlobalContextProvider>

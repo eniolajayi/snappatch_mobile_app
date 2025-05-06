@@ -1,4 +1,5 @@
 import { registerUser } from "@/api/auth";
+import { handleMutationError } from "@/utils/form";
 import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
 import { useFormik } from "formik";
@@ -40,9 +41,7 @@ export default function RegisterScreen() {
 				router.navigate("/auth/signin");
 			}
 		},
-		onError: (error) => {
-			console.error("Error logging in:", error);
-		},
+		onError:handleMutationError,
 	});
 
 	return (

@@ -8,6 +8,10 @@ export async function saveToSecureStore(key: string, value: string) {
     await SecureStore.setItemAsync(key, value);
 };
 
+export async function removeFromSecureStore(key: string) {
+    await SecureStore.deleteItemAsync(key);
+};
+
 export async function getFromSecureStore(key: string) {
     const result = await SecureStore.getItemAsync(key);
     if (result) {
